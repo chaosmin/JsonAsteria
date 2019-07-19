@@ -1,0 +1,67 @@
+buildscript {
+    ext {
+        // language
+        kotlin_version = "1.3.41"
+        kotlin_coroutine_version = "1.1.1"
+        jackson_version = "2.9.9"
+        jsonpath_version = "2.4.0"
+        slf4j_version = "1.7.26"
+        
+    }
+
+    repositories {
+        maven { url "https://maven.aliyun.com/nexus/content/groups/public" }
+        maven { url "https://maven.aliyun.com/repository/gradle-plugin" }
+    }
+
+    dependencies {
+        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:${kotlin_version}")
+        classpath("org.jetbrains.kotlin:kotlin-allopen:${kotlin_version}")
+        classpath("org.jetbrains.kotlin:kotlin-noarg:${kotlin_version}")
+    }
+}
+
+apply plugin: "java"
+apply plugin: "kotlin"
+
+group 'com.romani'
+version '1.0-SNAPSHOT'
+
+compileKotlin {
+    kotlinOptions.jvmTarget = "1.8"
+}
+
+compileTestKotlin {
+    kotlinOptions.jvmTarget = "1.8"
+}
+
+repositories {
+    mavenCentral()
+    maven { url "https://maven.aliyun.com/repository/central" }
+    maven { url "http://svn.jufandev.com:8087/nexus/repository/release/" }
+    maven { url "http://svn.jufandev.com:8087/nexus/repository/snapshots/" }
+    maven { url 'http://svn.jufandev.com:8087/nexus/repository/cloudera-repo/' }
+}
+
+dependencies {
+    // kotlin
+    compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    compile "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    compile "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
+    compile "org.jetbrains.kotlin:kotlin-reflect:$kotlin_version"
+    // log
+    compile "org.slf4j:slf4j-api:$slf4j_version"
+    compile "org.slf4j:slf4j-nop:$slf4j_version"
+    
+    compile "com.jayway.jsonpath:json-path:$jsonpath_version"
+    compile "com.fasterxml.jackson.core:jackson-databind:$jackson_version"
+    compile "com.fasterxml.jackson.module:jackson-module-kotlin:$jackson_version"
+    
+    testCompileOnly "junit:junit:4.12"
+}
+
+project.clean.doLast {
+    new File(projectDir.getAbsolutePath() + "/build").deleteDir()
+    new File(projectDir.getAbsolutePath() + "/out").deleteDir()
+    println "${projectDir.getAbsolutePath()} - 清理完成!"
+}

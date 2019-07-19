@@ -1,0 +1,50 @@
+[
+  {
+    "name": "name",
+    "type": "string",
+    "jsonPath": "$.name",
+    "optional": true,
+    "doc": "姓名"
+  },
+  {
+    "name": "graduationSchools",
+    "fields": [
+      {
+        "name": "school-name",
+        "type": "string",
+        "isArray": true,
+        "jsonPath": "$.graduated[*].school-name",
+        "optional": false,
+        "default": [],
+        "doc": "院校名称"
+      },
+      {
+        "name": "school-date",
+        "type": "date",
+        "isArray": true,
+        "jsonPath": "$.graduated[*].graduation-time",
+        "optional": false,
+        "default": [],
+        "doc": "毕业时间"
+      },
+      {
+        "name": "math-score",
+        "type": "int",
+        "isArray": true,
+        "jsonPath": "$.graduated[*].score[?(@.name=='math')].score",
+        "optional": false,
+        "default": [],
+        "doc": "数学成绩"
+      },
+      {
+        "name": "english-score",
+        "type": "int",
+        "isArray": true,
+        "jsonPath": "$.graduated[*].score[?(@.name=='english')].score",
+        "optional": false,
+        "default": [],
+        "doc": "英语成绩"
+      }
+    ]
+  }
+]

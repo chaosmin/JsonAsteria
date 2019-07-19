@@ -1,0 +1,52 @@
+{
+  "name": "romani",
+  "idCard": "300000000000000000",
+  "mobile": "18600000000",
+  "graduated": [
+    {
+      "graduation-time": "2013-06-01",
+      "school-name": "Xingzhi High School",
+      "degree": "high school student",
+      "score": [
+        {
+          "name": "math",
+          "score": 100
+        },
+        {
+          "name": "english",
+          "score": 100
+        }
+      ]
+    },
+    {
+      "graduation-time": "2017-06-01",
+      "school-name": "Shanghai University if Electric Power",
+      "degree": "undergraduate",
+      "score": [
+        {
+          "name": "math",
+          "score": 80
+        },
+        {
+          "name": "english",
+          "score": 70
+        }
+      ]
+    },
+    {
+      "graduation-time": "2019-06-01",
+      "school-name": "Shanghai TongJi University",
+      "degree": "master",
+      "score": [
+        {
+          "name": "math",
+          "score": 70
+        },
+        {
+          "name": "english",
+          "score": 80
+        }
+      ]
+    }
+  ]
+}

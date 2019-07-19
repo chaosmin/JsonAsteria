@@ -1,0 +1,39 @@
+HELP.md
+.gradle
+/build/
+/out/
+!gradle/wrapper/gradle-wrapper.jar
+
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+*/out/
+*/build/
+
+### NetBeans ###
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+
+### VS Code ###
+.vscode/
+
+### log ###
+logs/
+
+### local application ###
+/data-engine-admin/src/main/resources/application-local.yml
+/data-engine-core/src/main/resources/application-local.yml

@@ -1,0 +1,314 @@
+[
+  {
+    "name": "date",
+    "type": "string",
+    "jsonPath": "$.report[?(@.key=='data_gain_time')].value",
+    "optional": true,
+    "default": "",
+    "doc": "魔蝎报告生成时间"
+  },
+  {
+    "name": "identicalName",
+    "type": "string",
+    "jsonPath": "$.user_basic.[?(@.key=='name')].value",
+    "optional": true,
+    "default": "",
+    "doc": ""
+  },
+  {
+    "name": "activeDay3M",
+    "type": "string",
+    "jsonPath": "$.active_degree.[?(@.app_point=='call_day')].item.item_3m",
+    "optional": true,
+    "default": "0",
+    "doc": "近3个月手机活跃天数"
+  },
+  {
+    "name": "activeDay6M",
+    "type": "string",
+    "jsonPath": "$.active_degree.[?(@.app_point=='call_day')].item.item_6m",
+    "optional": true,
+    "default": "",
+    "doc": "近6个月手机活跃天数"
+  },
+  {
+    "name": "powerOffDay3M",
+    "type": "string",
+    "jsonPath": "$.active_degree.[?(@.app_point=='power_off_day')].item.item_3m",
+    "optional": true,
+    "default": "",
+    "doc": "近3个月手机关机天数"
+  },
+  {
+    "name": "powerOffDay6M",
+    "type": "string",
+    "jsonPath": "$.active_degree.[?(@.app_point=='power_off_day')].item.item_6m",
+    "optional": true,
+    "default": "",
+    "doc": "近6个月手机关机天数"
+  },
+  {
+    "name": "recharge1M",
+    "type": "string",
+    "jsonPath": "$.active_degree.[?(@.app_point=='recharge_cnt')].item.item_1m",
+    "optional": true,
+    "default": "1",
+    "doc": "近1个月手机充值次数"
+  },
+  {
+    "name": "recharge3M",
+    "type": "string",
+    "jsonPath": "$.active_degree.[?(@.app_point=='recharge_cnt')].item.item_3m",
+    "optional": true,
+    "default": "5",
+    "doc": "近3个月手机充值次数"
+  },
+  {
+    "name": "noCallDay3M",
+    "type": "string",
+    "jsonPath": "$.active_degree.[?(@.app_point=='no_call_day')].item.item_3m",
+    "optional": true,
+    "default": "",
+    "doc": "近3个月手机无通话次数"
+  },
+  {
+    "name": "noCallDay6M",
+    "type": "string",
+    "jsonPath": "$.active_degree.[?(@.app_point=='no_call_day')].item.item_6m",
+    "optional": true,
+    "default": "",
+    "doc": "近6个月手机无通话次数"
+  },
+  {
+    "name": "contactCnt3M",
+    "type": "int",
+    "jsonPath": "$.call_contact_detail..call_cnt_3m",
+    "optional": true,
+    "default": 0,
+    "doc": "亲属联系人3个月内通话次数"
+  },
+  {
+    "name": "contactTime3M",
+    "type": "int",
+    "jsonPath": "$.call_contact_detail..call_time_3m",
+    "optional": true,
+    "default": 0,
+    "doc": "亲属联系人3个月内通话累计时间"
+  },
+  {
+    "name": "contactCnt6M",
+    "type": "int",
+    "jsonPath": "$.call_contact_detail..call_cnt_6m",
+    "optional": true,
+    "default": 0,
+    "doc": "亲属联系人6个月内通话次数"
+  },
+  {
+    "name": "contactTime6M",
+    "type": "int",
+    "jsonPath": "$.call_contact_detail..call_time_6m",
+    "optional": true,
+    "default": 0,
+    "doc": "亲属联系人6个月内通话累计时间"
+  },
+  {
+    "name": "rechargeAmount",
+    "type": "string",
+    "jsonPath": "$.consumption_detail.[?(@.app_point=='recharge_amount')].item.item_6m",
+    "optional": true,
+    "default": "",
+    "doc": "近6个月手机充值金额"
+  },
+  {
+    "name": "netFeeAmount3M",
+    "type": "string",
+    "jsonPath": "$.consumption_detail.[?(@.app_point=='net_fee')].item.item_3m",
+    "optional": true,
+    "default": "0.0",
+    "doc": "近6个月手机充值金额"
+  },
+  {
+    "name": "netFeeAmount6M",
+    "type": "string",
+    "jsonPath": "$.consumption_detail.[?(@.app_point=='net_fee')].item.item_6m",
+    "optional": true,
+    "default": "167.5",
+    "doc": "近6个月手机充值金额"
+  },
+  {
+    "name": "friendCircleCity3M",
+    "type": "string",
+    "jsonPath": "$.friend_circle.summary.[?(@.key=='friend_city_center_3m')].value",
+    "optional": true,
+    "default": "",
+    "doc": "魔蝎手机报告朋友圈中心地"
+  },
+  {
+    "name": "friendCircleCity6M",
+    "type": "string",
+    "jsonPath": "$.friend_circle.summary.[?(@.key=='friend_city_center_6m')].value",
+    "optional": true,
+    "default": "",
+    "doc": "魔蝎手机报告朋友圈中心地"
+  },
+  {
+    "name": "callEachOtherCnt3M",
+    "type": "string",
+    "jsonPath": "$.friend_circle.summary.[?(@.key=='inter_peer_num_3m')].value",
+    "optional": true,
+    "default": "",
+    "doc": "近3个月互通电话号码数"
+  },
+  {
+    "name": "phoneCityName",
+    "type": "string",
+    "jsonPath": "$.cell_phone.[?(@.key=='phone_attribution')].value",
+    "optional": true,
+    "default": "",
+    "doc": "手机号段城市"
+  },
+  {
+    "name": "phoneUsedTime",
+    "type": "string",
+    "jsonPath": "$.cell_phone.[?(@.key=='in_time')].value",
+    "optional": true,
+    "default": 33,
+    "doc": "手机使用时长"
+  },
+  {
+    "name": "nightCnt1M",
+    "type": "string",
+    "jsonPath": "$.call_time_detail.[?(@.app_point=='night_cnt')].item.item_1m",
+    "optional": true,
+    "default": "",
+    "doc": "近1个月夜晚(0:00-7:00)通话次数"
+  },
+  {
+    "name": "nightTime1M",
+    "type": "string",
+    "jsonPath": "$.call_time_detail.[?(@.app_point=='night_time')].item.item_1m",
+    "optional": true,
+    "default": 22,
+    "doc": "近1个月夜晚(0:00-7:00)通话时长"
+  },
+  {
+    "name": "nightCnt3M",
+    "type": "string",
+    "jsonPath": "$.call_time_detail.[?(@.app_point=='night_cnt')].item.item_3m",
+    "optional": true,
+    "default": 4,
+    "doc": "近3个月夜晚(0:00-7:00)通话次数"
+  },
+  {
+    "name": "nightTime3M",
+    "type": "string",
+    "jsonPath": "$.call_time_detail.[?(@.app_point=='night_time')].item.item_3m",
+    "optional": true,
+    "default": "",
+    "doc": "近3个月夜晚(0:00-7:00)通话时长"
+  },
+  {
+    "name": "daybreakTotalTime3M",
+    "type": "int",
+    "jsonPath": "$.call_duration_detail.[?(@.key=='call_duration_detail_3m')].duration_list.[?(@.time_step=='daybreak')].item.total_time",
+    "optional": true,
+    "default": 86,
+    "doc": "近3月凌晨通话时长"
+  },
+  {
+    "name": "daybreakDialedCnt3M",
+    "type": "int",
+    "jsonPath": "$.call_duration_detail.[?(@.key=='call_duration_detail_3m')].duration_list.[?(@.time_step=='daybreak')].item.dialed_cnt",
+    "optional": true,
+    "default": 1,
+    "doc": "近3月凌晨被叫次数"
+  },
+  {
+    "name": "daybreakUniqNumCnt6M",
+    "type": "int",
+    "jsonPath": "$.call_duration_detail.[?(@.key=='call_duration_detail_6m')].duration_list.[?(@.time_step=='daybreak')].item.uniq_num_cnt",
+    "optional": true,
+    "default": 3,
+    "doc": "近6月凌晨不同通话号码数"
+  },
+  {
+    "name": "midnightTotalCnt3M",
+    "type": "int",
+    "jsonPath": "$.call_duration_detail.[?(@.key=='call_duration_detail_3m')].duration_list.[?(@.time_step=='midnight')].item.total_cnt",
+    "optional": true,
+    "default": 0,
+    "doc": "近3月深夜通话次数"
+  },
+  {
+    "name": "midnightTotalTime3M",
+    "type": "int",
+    "jsonPath": "$.call_duration_detail.[?(@.key=='call_duration_detail_3m')].duration_list.[?(@.time_step=='midnight')].item.total_time",
+    "optional": true,
+    "default": 0,
+    "doc": "近3月深夜通话时长"
+  },
+  {
+    "name": "midnightDialedCnt3M",
+    "type": "int",
+    "jsonPath": "$.call_duration_detail.[?(@.key=='call_duration_detail_3m')].duration_list.[?(@.time_step=='midnight')].item.dialed_cnt",
+    "optional": true,
+    "default": 0,
+    "doc": "近3月深夜被叫次数"
+  },
+  {
+    "name": "midnightDialedTime3M",
+    "type": "int",
+    "jsonPath": "$.call_duration_detail.[?(@.key=='call_duration_detail_3m')].duration_list.[?(@.time_step=='midnight')].item.dialed_time",
+    "optional": true,
+    "default": 0,
+    "doc": "近3月深夜被叫时长"
+  },
+  {
+    "name": "midnightTotalCnt6M",
+    "type": "int",
+    "jsonPath": "$.call_duration_detail.[?(@.key=='call_duration_detail_6m')].duration_list.[?(@.time_step=='midnight')].item.total_cnt",
+    "optional": true,
+    "default": 0,
+    "doc": "近6月深夜通话次数"
+  },
+  {
+    "name": "midnightTotalTime6M",
+    "type": "int",
+    "jsonPath": "$.call_duration_detail.[?(@.key=='call_duration_detail_6m')].duration_list.[?(@.time_step=='midnight')].item.total_time",
+    "optional": true,
+    "default": 0,
+    "doc": "近6月深夜通话时长"
+  },
+  {
+    "name": "midnightDialedCnt6M",
+    "type": "int",
+    "jsonPath": "$.call_duration_detail.[?(@.key=='call_duration_detail_6m')].duration_list.[?(@.time_step=='midnight')].item.dialed_cnt",
+    "optional": true,
+    "default": 0,
+    "doc": "近6月深夜被叫次数"
+  },
+  {
+    "name": "midnightDialedTimeCnt6M",
+    "type": "int",
+    "jsonPath": "$.call_duration_detail.[?(@.key=='call_duration_detail_6m')].duration_list.[?(@.time_step=='midnight')].item.dialed_time",
+    "optional": true,
+    "default": 0,
+    "doc": "近6月深夜被叫时长"
+  },
+  {
+    "name": "roamDays",
+    "type": "int",
+    "jsonPath": "$.roam_analysis..roam_day_cnt_3m",
+    "optional": true,
+    "default": 0,
+    "doc": "近3月各地漫游天数"
+  },
+  {
+    "name": "roamDaysIn6M",
+    "type": "int",
+    "jsonPath": "$.roam_analysis..roam_day_cnt_6m",
+    "optional": true,
+    "default": 0,
+    "doc": "近3月各地漫游天数"
+  }
+]
