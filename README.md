@@ -1,6 +1,6 @@
 # JsonAsteria
 
-English | [简体中文](README.md)
+English | [简体中文](README-zh.md)
 
 Read original json message and generate a new JSON defined in schema.
 
