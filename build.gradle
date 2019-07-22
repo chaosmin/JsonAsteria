@@ -63,5 +63,5 @@ dependencies {
 project.clean.doLast {
     new File(projectDir.getAbsolutePath() + "/build").deleteDir()
     new File(projectDir.getAbsolutePath() + "/out").deleteDir()
-    println "${projectDir.getAbsolutePath()} - 清理完成!"
+    println "${projectDir.getAbsolutePath()} - Clean completed!"
 }
