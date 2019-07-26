@@ -1,5 +1,6 @@
 package com.romani.jsonparser
 
+import com.chaosmin.toolkit.JsonUtil
 import org.junit.Test
 import java.io.File
 import java.nio.charset.Charset

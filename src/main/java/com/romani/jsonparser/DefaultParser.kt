@@ -1,6 +1,8 @@
 package com.romani.jsonparser
 
+import com.chaosmin.toolkit.JsonUtil
 import com.fasterxml.jackson.databind.JsonNode
+import com.fasterxml.jackson.databind.node.MissingNode
 import com.fasterxml.jackson.databind.node.ObjectNode
 import com.jayway.jsonpath.Configuration
 import com.jayway.jsonpath.DocumentContext
@@ -32,19 +34,25 @@ class DefaultParser : Parser {
         if (origin.isBlank() || schema.isBlank()) throw RuntimeException("")
         else {
             val readDocument = JsonPath.parse(origin, config)
-            val schemas = read("$", JsonUtil.mapper().readTree(schema), readDocument)
-            val root = JsonUtil.mapper().nodeFactory.objectNode()
+            val schemas = read("$", JsonUtil.objectMapper.readTree(schema), readDocument)
+            val root = JsonUtil.newNode()
             schemas.forEach {
                 val paths = it.writePath.split(".")
-                val node = JsonUtil.newObjectNode(paths.last(), it.valueOrDefault)
+                val node = JsonUtil.newNode(paths.last(), it.valueOrDefault)
                 var currentNode: JsonNode = root
                 paths.drop(1).dropLast(1).forEach { path ->
-                    currentNode = if (path == "$") root
-                    else JsonUtil.getIfPersent(currentNode, path)
+                    currentNode = when {
+                        path == "$" -> root
+                        node.path(path) is MissingNode -> {
+                            (node as ObjectNode).set(path, JsonUtil.newNode())
+                            node[path]
+                        }
+                        else -> node[path]
+                    }
                 }
                 (currentNode as ObjectNode).setAll(node as ObjectNode)
             }
-            return root
+            return root as ObjectNode
         }
     }
 
@@ -71,14 +79,32 @@ class DefaultParser : Parser {
                 val doc = if (node.has("doc")) node["doc"].textValue() else ""
                 return listOf(when (type.toLowerCase()) {
                     "string" -> if (isArray) {
-                        Schema.buildSchema<List<String>>(name, optional, readPath, writePath, doc).setValue(getVaD(readPath, document, default))
-                    } else Schema.buildSchema<String>(name, optional, readPath, writePath, doc).setValue(getVaD(readPath, document, default))
+                        val values = getVaD<List<String>>(readPath, document, default)
+                        val schema = Schema.buildSchema<List<String>>(name, optional, readPath, writePath, doc)
+                        schema.values(values.first, values.second)
+                    } else {
+                        val values = getVaD<String>(readPath, document, default)
+                        val schema = Schema.buildSchema<String>(name, optional, readPath, writePath, doc)
+                        schema.values(values.first, values.second)
+                    }
                     "int" -> if (isArray) {
-                        Schema.buildSchema<List<Int>>(name, optional, readPath, writePath, doc).setValue(getVaD(readPath, document, default))
-                    } else Schema.buildSchema<Int>(name, optional, readPath, writePath, doc).setValue(getVaD(readPath, document, default))
+                        val values = getVaD<List<Int>>(readPath, document, default)
+                        val schema = Schema.buildSchema<List<Int>>(name, optional, readPath, writePath, doc)
+                        schema.values(values.first, values.second)
+                    } else {
+                        val values = getVaD<Int>(readPath, document, default)
+                        val schema = Schema.buildSchema<Int>(name, optional, readPath, writePath, doc)
+                        schema.values(values.first, values.second)
+                    }
                     else -> if (isArray) {
-                        Schema.buildSchema<List<Any>>(name, optional, readPath, writePath, doc).setValue(getVaD(readPath, document, default))
-                    } else Schema.buildSchema<Any>(name, optional, readPath, writePath, doc).setValue(getVaD(readPath, document, default))
+                        val values = getVaD<List<Any>>(readPath, document, default)
+                        val schema = Schema.buildSchema<List<Any>>(name, optional, readPath, writePath, doc)
+                        schema.values(values.first, values.second)
+                    } else {
+                        val values = getVaD<Any>(readPath, document, default)
+                        val schema = Schema.buildSchema<Any>(name, optional, readPath, writePath, doc)
+                        schema.values(values.first, values.second)
+                    }
                 })
             }
         }

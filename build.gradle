@@ -6,7 +6,8 @@ buildscript {
         jackson_version = "2.9.9"
         jsonpath_version = "2.4.0"
         slf4j_version = "1.7.26"
-        
+        toolkit_version = "0.0.2"
+        junit_version = "4.12"
     }
 
     repositories {
@@ -37,10 +38,8 @@ compileTestKotlin {
 
 repositories {
     mavenCentral()
+    maven { url 'https://jitpack.io' }
     maven { url "https://maven.aliyun.com/repository/central" }
-    maven { url "http://svn.jufandev.com:8087/nexus/repository/release/" }
-    maven { url "http://svn.jufandev.com:8087/nexus/repository/snapshots/" }
-    maven { url 'http://svn.jufandev.com:8087/nexus/repository/cloudera-repo/' }
 }
 
 dependencies {
@@ -52,12 +51,13 @@ dependencies {
     // log
     compile "org.slf4j:slf4j-api:$slf4j_version"
     compile "org.slf4j:slf4j-nop:$slf4j_version"
-    
+
+    compile "com.github.chaosmin:RoToolkit:$toolkit_version"
     compile "com.jayway.jsonpath:json-path:$jsonpath_version"
     compile "com.fasterxml.jackson.core:jackson-databind:$jackson_version"
     compile "com.fasterxml.jackson.module:jackson-module-kotlin:$jackson_version"
-    
-    testCompileOnly "junit:junit:4.12"
+
+    testCompileOnly "junit:junit:$junit_version"
 }
 
 project.clean.doLast {
