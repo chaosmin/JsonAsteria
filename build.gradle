@@ -25,7 +25,7 @@ buildscript {
 apply plugin: "java"
 apply plugin: "kotlin"
 
-group 'com.romani'
+group 'com.chaosmin'
 version '1.0-SNAPSHOT'
 
 compileKotlin {
