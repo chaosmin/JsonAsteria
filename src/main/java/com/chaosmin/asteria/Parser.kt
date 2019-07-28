@@ -1,4 +1,4 @@
-package com.romani.jsonparser
+package com.chaosmin.asteria
 
 import com.fasterxml.jackson.databind.node.ObjectNode
 import com.jayway.jsonpath.Configuration

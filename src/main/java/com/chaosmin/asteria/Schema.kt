@@ -1,4 +1,4 @@
-package com.romani.jsonparser
+package com.chaosmin.asteria
 
 import com.jayway.jsonpath.TypeRef
 
